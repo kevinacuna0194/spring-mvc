@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Usuario</title>
+    <title th:text="${title}"></title>
 </head>
 <body>
-    <h1>Detalles del Usuario</h1>
-    <p>Aquí están los detalles del usuario.</p>
+    <h1 th:text="${title}">Detalles del Usuario</h1>
+    <p th:text="${description}"></p>
     <ul>
-        <li>ID: 1</li>
-        <li>Nombre: Juan Pérez</li>
-        <li>Email: juan.perez@example.com</li>
+        <li>ID: <span th:text="${userId}"></span></li>
+        <li>Nombre: <span th:text="${userName}"></span></li>
+        <li>Email: <span th:text="${userEmail}"></span></li>
     </ul>
 </body>
-</html>
+</html> 
