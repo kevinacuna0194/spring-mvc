@@ -17,7 +17,7 @@
             <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span>
         </li>
     </ul> -->
-    <table border="1">
+    <table border="1" th:if="${not users.isEmpty()}">
         <thead>
             <tr>
                 <th>Nombre</th>

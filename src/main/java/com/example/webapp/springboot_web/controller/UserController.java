@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.webapp.springboot_web.models.User;
 
@@ -39,17 +40,28 @@ public class UserController {
         // users.add(new User("María", "Gómez", "maria.gomez@example.com"));
         // users.add(new User("Pedro", "López", null));
 
-        List<User> users = Arrays.asList(
+        // List<User> users = Arrays.asList(
+        //     new User("Juan", "Pérez", "juan.perez@example.com"),
+        //     new User("María", "Gómez", "maria.gomez@example.com"),
+        //     new User("Pedro", "López", null),
+        //     new User("Ana", "Martínez", "ana.martinez@example.com")
+        // );
+
+        model.addAttribute("title", "Lista de Usuarios");
+        model.addAttribute("description", "Aquí está la lista de usuarios.");
+        // model.addAttribute("users", users);
+
+        return "list";
+    }
+
+    // Método para poblar la lista de usuarios. Es global para todos los métodos del controlador.
+    @ModelAttribute("users")
+    public List<User> populateUsers() {
+        return Arrays.asList(
             new User("Juan", "Pérez", "juan.perez@example.com"),
             new User("María", "Gómez", "maria.gomez@example.com"),
             new User("Pedro", "López", null),
             new User("Ana", "Martínez", "ana.martinez@example.com")
         );
-
-        model.addAttribute("title", "Lista de Usuarios");
-        model.addAttribute("description", "Aquí está la lista de usuarios.");
-        model.addAttribute("users", users);
-
-        return "list";
     }
 }
