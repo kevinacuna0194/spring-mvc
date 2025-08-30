@@ -11,7 +11,10 @@
     <ul>
         <li>ID: <span th:text="${userId}"></span></li>
         <li>Nombre: <span th:text="${user.name}"></span></li>
-        <li>Email: <span th:text="${user.email}"></span></li>
+        <li>Apellido: <span th:text="${user.lastname}"></span></li>
+        <!-- <li>Email: <span th:if="${user.email}" th:text="${user.email}"></span></li>
+        <li>Email: <span th:if="${user.email == null}" th:text="${'No tiene email disponible'}"></span></li> -->
+        <li>Email: <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span></li>
     </ul>
 </body>
 </html> 

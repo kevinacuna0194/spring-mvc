@@ -12,8 +12,8 @@ public class UserController {
     // Define tus endpoints aquí
     @GetMapping("/details")
     public String details(Model model) {
-        
-        User user = new User("Juan Pérez", "juan.perez@example.com");
+
+        User user = new User("Juan", "Pérez", "juan.perez@example.com");
 
         model.addAttribute("title", "Detalles del Usuario");
         model.addAttribute("description", "Aquí están los detalles del usuario.");

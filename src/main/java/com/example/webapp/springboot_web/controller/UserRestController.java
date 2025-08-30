@@ -1,6 +1,6 @@
 package com.example.webapp.springboot_web.controller;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +24,7 @@ public class UserRestController {
         userDto.setId(1);
         userDto.setTitle("Detalles del Usuario");
         userDto.setDescription("Aquí están los detalles del usuario.");
-        User user = new User("Juan Pérez", "juan.perez@example.com");
+        User user = new User("Juan", "Pérez", "juan.perez@example.com");
         userDto.setUser(user);
 
         return userDto;
@@ -32,9 +32,9 @@ public class UserRestController {
 
     @GetMapping("/list")
     public List<User> listAll() {
-        User user = new User("Juan Pérez", "juan.perez@example.com");
-        User user2 = new User("María López", "maria.lopez@example.com");
-        User user3 = new User("Pedro González", "pedro.gonzalez@example.com");
+        User user = new User("Juan", "Pérez", "juan.perez@example.com");
+        User user2 = new User("María", "López", "maria.lopez@example.com");
+        User user3 = new User("Pedro", "González", "pedro.gonzalez@example.com");
 
         List<User> users = Arrays.asList(user, user2, user3);
 
@@ -49,7 +49,7 @@ public class UserRestController {
     @GetMapping("/details-map")
     public Map<String, Object> details() {
 
-        User user = new User("Juan Pérez", "juan.perez@example.com");
+        User user = new User("Juan", "Pérez", "juan.perez@example.com");
 
         Map<String, Object> body = new HashMap<>();
 
