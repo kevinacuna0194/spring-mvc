@@ -1,7 +1,11 @@
 package com.example.webapp.springboot_web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.webapp.springboot_web.models.User;
@@ -24,5 +28,21 @@ public class UserController {
         // model.addAttribute("userEmail", user.getEmail());
         model.addAttribute("user", user);
         return "details";
+    }
+
+    @GetMapping("/list")
+    public String listAll(ModelMap model) {
+
+        List<User> users = new ArrayList<>();
+
+        users.add(new User("Juan", "Pérez", "juan.perez@example.com"));
+        users.add(new User("María", "Gómez", "maria.gomez@example.com"));
+        users.add(new User("Pedro", "López", null));
+
+        model.addAttribute("title", "Lista de Usuarios");
+        model.addAttribute("description", "Aquí está la lista de usuarios.");
+        model.addAttribute("users", users);
+        
+        return "list";
     }
 }

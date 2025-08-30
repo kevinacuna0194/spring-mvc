@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h1 th:text="${title}">Lista de Usuarios</h1>
+    <p th:text="${description}"></p>
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.name}"></span> - 
+            <span th:text="${user.lastname}"></span> - 
+            <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span>
+        </li>
+    </ul>
+</body>
+</html>
