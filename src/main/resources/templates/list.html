@@ -8,12 +8,29 @@
 <body>
     <h1 th:text="${title}">Lista de Usuarios</h1>
     <p th:text="${description}"></p>
-    <ul>
+    <div th:if="${users.isEmpty()}">No se encontraron usuarios.</div>
+    <div th:if="${not users.isEmpty()}">Usuarios encontrados: <span th:text="${users.size()}"></span></div>
+    <!-- <ul>
         <li th:each="user : ${users}">
             <span th:text="${user.name}"></span> - 
             <span th:text="${user.lastname}"></span> - 
             <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span>
         </li>
-    </ul>
+    </ul> -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}"> <!-- Aquí se itera sobre la lista de usuarios -->
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></td>
+            </tr>
+        </tbody>
 </body>
 </html>
