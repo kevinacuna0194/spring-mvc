@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webapp.springboot_web.models.dto.ParamDto;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/params") // <--- Aquí se define la ruta base para este controlador
 public class RequestParamsController {
@@ -29,10 +31,29 @@ public class RequestParamsController {
 
     @GetMapping("/string-v2") // http://localhost:8080/api/params/string-v2?text=hola&number=123
     public ParamDto paramDtoV2(@RequestParam String text, @RequestParam Integer number) {
-
         ParamDto paramDto = new ParamDto();
+
         paramDto.setMessage(text);
         paramDto.setNumber(number);
+
+        return paramDto;
+    }
+
+    @GetMapping("/request")
+    // http://localhost:8080/api/params/request?number=123&message=hola
+    public ParamDto request(HttpServletRequest request) {
+        Integer number = 0;
+
+        try {
+            number = Integer.parseInt(request.getParameter("number"));
+        } catch (NumberFormatException e) {
+        }
+
+        ParamDto paramDto = new ParamDto();
+
+        paramDto.setNumber(number);
+        paramDto.setMessage(request.getParameter("message"));
+
         return paramDto;
     }
 }
