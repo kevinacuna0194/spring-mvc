@@ -32,7 +32,8 @@ public class PathVariableController {
     // Este método recibe un parámetro de ruta llamado "message"
     // Se utiliza @PathVariable para acceder al valor del parámetro en la URL
     // Por convención, se debería utilizar el mismo nombre en el método y en la URL
-    // En caso de que el nombre no coincida, se puede utilizar el atributo "name" de @PathVariable
+    // En caso de que el nombre no coincida, se puede utilizar el atributo "name" de
+    // @PathVariable
     // Si no se envía un valor para el parámetro, se lanzará una excepción 404
     public ParamDto paramDto(@PathVariable() String message) {
         ParamDto paramDto = new ParamDto();
