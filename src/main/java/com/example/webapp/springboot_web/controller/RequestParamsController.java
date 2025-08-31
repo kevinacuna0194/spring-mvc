@@ -41,6 +41,7 @@ public class RequestParamsController {
 
     @GetMapping("/request")
     // http://localhost:8080/api/params/request?number=123&message=hola
+    @SuppressWarnings("UnnecessaryTemporaryOnConversionFromString")
     public ParamDto request(HttpServletRequest request) {
         Integer number = 0;
 
