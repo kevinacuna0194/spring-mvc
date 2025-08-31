@@ -1,6 +1,7 @@
 package com.example.webapp.springboot_web.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +27,17 @@ public class PathVariableController {
     // private String message;
 
     @Value("${config.listOfValues}")
-    private String[] listOfValues;
+    // private String[] listOfValues;
+    private List<String> listOfValues;
+
+    // SpEL (Spring Expression Language)
+    // Se utiliza para evaluar expresiones en tiempo de ejecución
+    // En este caso, se utiliza para dividir una cadena en una lista
+    @Value("#{'${config.listOfValues}'.toUpperCase().split(',')}")
+    private List<String> valueList;
+
+    @Value("#{'${config.listOfValues}'.toUpperCase()}")
+    private String valueString;
 
     @GetMapping("/string/{message}") // http://localhost:8080/api/path/string/hola
     // Este método recibe un parámetro de ruta llamado "message"
@@ -59,12 +70,15 @@ public class PathVariableController {
     }
 
     @GetMapping("/values") // http://localhost:8080/api/path/values
-    // Se puede inyectar el valor de la propiedad "config.message" directamente en el método
+    // Se puede inyectar el valor de la propiedad "config.message" directamente en
+    // el método
     public Map<String, Object> getValues(@Value("${config.message}") String message) {
         Map<String, Object> response = new HashMap<>();
         response.put("username", username);
         response.put("message", message);
         response.put("listOfValues", listOfValues);
+        response.put("valueList", valueList);
+        response.put("valueString", valueString);
         return response;
     }
 }
