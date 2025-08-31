@@ -1,5 +1,8 @@
 package com.example.webapp.springboot_web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +24,13 @@ public class PathVariableController {
         ParamDto paramDto = new ParamDto();
         paramDto.setMessage(message);
         return paramDto;
+    }
+
+    @GetMapping("/mix/{product}/{id}") // http://localhost:8080/api/path/mix/telefono/123
+    public Map<String, Object> mix(@PathVariable String product, @PathVariable Integer id) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("product", product);
+        response.put("id", id);
+        return response;
     }
 }
