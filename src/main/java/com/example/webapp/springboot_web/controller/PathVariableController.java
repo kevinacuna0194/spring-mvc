@@ -3,6 +3,7 @@ package com.example.webapp.springboot_web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,16 @@ import com.example.webapp.springboot_web.models.dto.ParamDto;
 @RestController
 @RequestMapping("/api/path")
 public class PathVariableController {
+
+    // Inyección de propiedades desde application.properties
+    @Value("${config.username}")
+    private String username;
+
+    // @Value("${config.message}")
+    // private String message;
+
+    @Value("${config.listOfValues}")
+    private String[] listOfValues;
 
     @GetMapping("/string/{message}") // http://localhost:8080/api/path/string/hola
     // Este método recibe un parámetro de ruta llamado "message"
@@ -44,5 +55,15 @@ public class PathVariableController {
         user.setLastname(user.getLastname().toUpperCase());
         user.setEmail(user.getEmail().toUpperCase());
         return user;
+    }
+
+    @GetMapping("/values") // http://localhost:8080/api/path/values
+    // Se puede inyectar el valor de la propiedad "config.message" directamente en el método
+    public Map<String, Object> getValues(@Value("${config.message}") String message) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("username", username);
+        response.put("message", message);
+        response.put("listOfValues", listOfValues);
+        return response;
     }
 }
