@@ -29,11 +29,11 @@ public class RequestParamsController {
         return paramDto;
     }
 
-    @GetMapping("/string-v2") // http://localhost:8080/api/params/string-v2?text=hola&number=123
-    public ParamDto paramDtoV2(@RequestParam String text, @RequestParam Integer number) {
+    @GetMapping("/string-v2") // http://localhost:8080/api/params/string-v2?message=hola&number=123
+    public ParamDto paramDtoV2(@RequestParam String message, @RequestParam Integer number) {
         ParamDto paramDto = new ParamDto();
 
-        paramDto.setMessage(text);
+        paramDto.setMessage(message);
         paramDto.setNumber(number);
 
         return paramDto;

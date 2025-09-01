@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}"></title>
 </head>
+
 <body>
     <h1 th:text="${title}">Detalles del Usuario</h1>
     <p th:text="${description}"></p>
@@ -16,5 +18,16 @@
         <li>Email: <span th:if="${user.email == null}" th:text="${'No tiene email disponible'}"></span></li> -->
         <li>Email: <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span></li>
     </ul>
+
+    <a th:href="@{/list}">Volver al listado</a>
+    <br>
+    <a th:href="@{'/api/params/string?message=' + ${title}}">Título</a>
+    <br>
+    <a th:href="@{/api/params/string(message=${description})}">Enviar mensaje 1</a>
+    <br>
+    <a th:href="@{/api/params/string-v2?(message=${user.name},number=${userId})}">Enviar mensaje 2</a>
+    <br>
+    <a th:href="@{'/api/path/string/' + ${user.name}}">Enviar mensaje 3</a>
 </body>
-</html> 
+
+</html>
