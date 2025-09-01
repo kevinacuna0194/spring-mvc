@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +21,7 @@ import com.example.webapp.springboot_web.models.dto.ParamDto;
 @RequestMapping("/api/path")
 public class PathVariableController {
 
-    // Inyección de propiedades desde application.properties
+    // Inyección de propiedades desde properties
     @Value("${config.username}")
     private String username;
 
@@ -47,6 +49,10 @@ public class PathVariableController {
 
     @Value("#{${config.valueMap}.price}")
     private String price;
+
+    // Inyección de propiedades desde Environment
+    @Autowired
+    private Environment env;
 
     @GetMapping("/string/{message}") // http://localhost:8080/api/path/string/hola
     // Este método recibe un parámetro de ruta llamado "message"
@@ -82,15 +88,29 @@ public class PathVariableController {
     // Se puede inyectar el valor de la propiedad "config.message" directamente en
     // el método
     public Map<String, Object> getValues(@Value("${config.message}") String message) {
+
         Map<String, Object> response = new HashMap<>();
+        Long password = env.getProperty("config.password", Long.class);
+
+        // Inyección de propiedades desde @Value
         response.put("username", username);
         response.put("message", message);
         response.put("listOfValues", listOfValues);
+
+        // SpEL (Spring Expression Language)
         response.put("valueList", valueList);
         response.put("valueString", valueString);
         response.put("valuesMap", valuesMap);
         response.put("product", product);
         response.put("price", price);
+
+        // Inyección de propiedades desde Environment
+        response.put("envUsername", env.getProperty("config.username"));
+        response.put("envMessage", env.getProperty("config.message"));
+        // response.put("envPassword", Integer.valueOf(env.getProperty("config.password")));
+        // response.put("envPassword", env.getProperty("config.password", Long.class));
+        response.put("envPassword", password);
+        
         return response;
     }
 }
