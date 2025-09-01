@@ -39,6 +39,15 @@ public class PathVariableController {
     @Value("#{'${config.listOfValues}'.toUpperCase()}")
     private String valueString;
 
+    @Value("#{${config.valueMap}}")
+    private Map<String, Object> valuesMap;
+
+    @Value("#{${config.valueMap}.product}")
+    private String product;
+
+    @Value("#{${config.valueMap}.price}")
+    private String price;
+
     @GetMapping("/string/{message}") // http://localhost:8080/api/path/string/hola
     // Este método recibe un parámetro de ruta llamado "message"
     // Se utiliza @PathVariable para acceder al valor del parámetro en la URL
@@ -79,6 +88,9 @@ public class PathVariableController {
         response.put("listOfValues", listOfValues);
         response.put("valueList", valueList);
         response.put("valueString", valueString);
+        response.put("valuesMap", valuesMap);
+        response.put("product", product);
+        response.put("price", price);
         return response;
     }
 }
