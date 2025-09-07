@@ -8,6 +8,9 @@
 <body>
     <h1 th:text="${title}">Lista de Usuarios</h1>
     <p th:text="${description}"></p>
+    <!-- th:if se utiliza para renderizar condicionalmente contenido en la vista -->
+    <!-- isEmpty() es un método de la interfaz Collection que verifica si la colección está vacía -->
+    <!-- not es un operador lógico que invierte el valor booleano de la expresión -->
     <div th:if="${users.isEmpty()}">No se encontraron usuarios.</div>
     <div th:if="${not users.isEmpty()}">Usuarios encontrados: <span th:text="${users.size()}"></span></div>
     <!-- <ul>
@@ -26,6 +29,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- th:each se utiliza para iterar sobre colecciones -->
             <tr th:each="user : ${users}"> <!-- Aquí se itera sobre la lista de usuarios -->
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.lastname}"></td>

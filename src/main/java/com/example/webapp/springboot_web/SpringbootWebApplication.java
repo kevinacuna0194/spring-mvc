@@ -9,8 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // Cargar configuración externa
 // @PropertySource("classpath:values.properties")
 // @PropertySources({
-// @PropertySource("classpath:values.properties")
+// @PropertySource("classpath:values.properties"),
+// @PropertySource("classpath:override.properties")
 // })
+// Se pueden cargar múltiples archivos de configuración
+// El último archivo tiene mayor prioridad en caso de que existan propiedades con el mismo nombre
 public class SpringbootWebApplication {
 
 	public static void main(String[] args) {

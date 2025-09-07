@@ -55,6 +55,7 @@ public class UserController {
     }
 
     // Método para poblar la lista de usuarios. Es global para todos los métodos del controlador.
+    // Se puede usar en cualquier vista que se renderice desde este controlador.
     @ModelAttribute("users")
     public List<User> populateUsers() {
         return Arrays.asList(

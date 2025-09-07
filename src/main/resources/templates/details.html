@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <!-- th:text se utiliza para renderizar texto en la vista -->
+    <!-- $ es una forma de acceder a las variables del modelo -->
     <h1 th:text="${title}">Detalles del Usuario</h1>
     <p th:text="${description}"></p>
     <ul>
@@ -19,6 +21,12 @@
         <li>Email: <span th:text="${user.email != null ? user.email : 'No tiene email disponible'}"></span></li>
     </ul>
 
+    <!-- @ es una forma de construir URLs en Thymeleaf -->
+     <!-- Se pueden pasar parámetros en la URL utilizando la sintaxis (param1=${value1}, param2=${value2}) -->
+    <!-- También se pueden concatenar parámetros en la URL utilizando la sintaxis + -->
+    <!-- Si se quiere enviar un parámetro opcional, se puede utilizar la sintaxis ?(param=${value}) -->
+    <!-- Si el valor del parámetro es null, no se enviará el parámetro en la URL -->
+    <!-- En caso de que el valor del parámetro contenga caracteres especiales, Thymeleaf los codificará automáticamente -->
     <a th:href="@{/list}">Volver al listado</a>
     <br>
     <a th:href="@{'/api/params/string?message=' + ${title}}">Título</a>
